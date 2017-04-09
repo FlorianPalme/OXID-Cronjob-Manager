@@ -37,6 +37,7 @@ $aModule = [
     /** Extend Classes (fp/Module) **/
     'extend'		=>	[
         'oxmodule' => 'fp/oxid-cronjob-manager/core/fpocm_oxmodule',
+        'oxmaintenance' => 'fp/oxid-cronjob-manager/core/fpocm_oxmaintenance',
     ],
 
     /** Blocks **/
@@ -45,6 +46,12 @@ $aModule = [
             'template' => 'headitem.tpl',
             'block' => 'admin_headitem_incjs',
             'file' => 'application/views/admin/tpl/headitem/incjs.tpl',
+        ],*/
+
+        /*[
+            'template' => 'headitem.tpl',
+            'block' => 'admin_headitem_inccss',
+            'file' => 'application/views/admin/tpl/headitem/inccss.tpl',
         ],*/
     ],
 

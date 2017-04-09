@@ -17,7 +17,7 @@ class fpOCM_Cronjob extends oxBase
     /**
      * Cronjob-Module
      *
-     * @var null|oxModule|fpOCM_oxModule
+     * @var null|oxModule|fpOCM_oxModule|bool
      */
     protected $_oModule = null;
 
@@ -98,6 +98,17 @@ class fpOCM_Cronjob extends oxBase
 
 
     /**
+     * Gibt die auszuführende Funktione zurück
+     *
+     * @return mixed
+     */
+    public function getFnc()
+    {
+        return $this->getModuleCronjob()[ 'fnc' ];
+    }
+
+
+    /**
      * Gibt den Modul-Titel zurück
      *
      * @return string
@@ -117,6 +128,10 @@ class fpOCM_Cronjob extends oxBase
         if( $this->_aModuleCronjob === null ){
             $this->_aModuleCronjob = [];
 
+            if( ! $this->getModule() ){
+                return [];
+            }
+
             if( $aCronjob = $this->getModule()->getCronjobs()[ $this->fpocmcronjobs__oxcronjobid->value ] ){
                 $this->_aModuleCronjob = $aCronjob;
             }
@@ -129,14 +144,18 @@ class fpOCM_Cronjob extends oxBase
     /**
      * Gibt das Modul zurück
      *
-     * @return fpOCM_oxModule|null|oxModule
+     * @return fpOCM_oxModule|null|oxModule|bool
      */
     public function getModule()
     {
         if( $this->_oModule === null ){
             /** @var oxModule|fpOCM_oxModule $oModule */
             $oModule = oxNew( 'oxModule' );
-            $oModule->load( $this->fpocmcronjobs__oxmoduleid->value );
+            if( ! $oModule->load( $this->fpocmcronjobs__oxmoduleid->value ) ){
+                $this->_oModule = false;
+
+                return false;
+            }
 
             $this->_oModule = $oModule;
         }

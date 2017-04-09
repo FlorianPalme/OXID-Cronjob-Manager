@@ -38,8 +38,8 @@ window.onload = function ()
             <tr class="listitem">
                 [{block name="admin_fpocm_list_sorting"}]
                     <td class="listheader first" height="15" width="30" align="center">[{ oxmultilang ident="FPOCM_ADMIN_LIST_ACTIVE" }]</td>
-                    <td class="listheader">[{ oxmultilang ident="FPOCM_ADMIN_LIST_TITLE" }]</td>
                     <td class="listheader">[{ oxmultilang ident="FPOCM_ADMIN_LIST_MODULETITLE" }]</td>
+                    <td class="listheader">[{ oxmultilang ident="FPOCM_ADMIN_LIST_TITLE" }]</td>
                     <td class="listheader">[{ oxmultilang ident="FPOCM_ADMIN_LIST_CRONTAB" }]</td>
                     <td class="listheader">&nbsp;</td>
                 [{/block}]
@@ -62,7 +62,7 @@ window.onload = function ()
                             [{assign var="listclass" value=listitem4 }]
                         [{/if}]
 
-                        <td valign="top" class="[{$listclass}][{if $listitem->fpocmcronjobs__oxstatus->value == 'active'}] active[{/if}]" height="15"><div class="listitemfloating">&nbsp</a></div></td>
+                        <td valign="top" class="[{$listclass}][{if $listitem->fpocmcronjobs__oxstatus->value == 'active'}] active[{elseif $listitem->fpocmcronjobs__oxstatus->value == 'paused'}] paused[{/if}]" height="15"><div class="listitemfloating">&nbsp</a></div></td>
                         <td valign="top" class="[{$listclass}]"><div class="listitemfloating"><a href="Javascript:top.oxid.admin.editThis('[{$listitem->fpocmcronjobs__oxid->value}]');" class="[{$listclass}]">[{$listitem->getModuleTitle()}]</a></div></td>
                         <td valign="top" class="[{$listclass}]"><div class="listitemfloating"><a href="Javascript:top.oxid.admin.editThis('[{$listitem->fpocmcronjobs__oxid->value}]');" class="[{$listclass}]">[{$listitem->getTitle()}]</a></div></td>
                         <td valign="top" class="[{$listclass}]"><div class="listitemfloating"><a href="Javascript:top.oxid.admin.editThis('[{$listitem->fpocmcronjobs__oxid->value}]');" class="[{$listclass}]">[{$listitem->fpocmcronjobs__oxcrontab->value}]</a></div></td>
