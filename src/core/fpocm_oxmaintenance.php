@@ -48,7 +48,7 @@ class fpOCM_oxMaintenance extends fpOCM_oxMaintenance_parent
         foreach( $oCronjobList as $oCronjob ){
             if( ! $oCronjob->getModule() ) continue;
 
-            $oScheduler->call( [ $this, $oCronjob->getFnc() ] )
+            $oScheduler->call( [ $this, 'runOCMCronjob' ], [ 'oCronjob' => $oCronjob ] )
                 ->at( $oCronjob->fpocmcronjobs__oxcrontab->value )
                 ->when( function() use( $oCronjob, $oMaintenance ) {
                     // Prüfen, ob Cronjob aktiv ist
@@ -57,6 +57,8 @@ class fpOCM_oxMaintenance extends fpOCM_oxMaintenance_parent
                         if( $oCronjob->getModule()->isActive() && method_exists( $oMaintenance, $oCronjob->getFnc() ) ){
                             return true;
                         }
+
+                        // TODO: Cronjob deaktivieren
                     }
 
                     return false;
@@ -73,11 +75,73 @@ class fpOCM_oxMaintenance extends fpOCM_oxMaintenance_parent
 
 
     /**
+     * Führt einen Cronjob aus
+     *
+     * @param array $aArgs
+     *
+     * @throws Exception
+     *
+     * @return string
+     */
+    public function runOCMCronjob( array $aArgs )
+    {
+        /** @var fpOCM_Cronjob $oCronjob */
+        $oCronjob = $aArgs[ 'oCronjob' ];
+
+        // Log schreiben
+        /** @var fpOCM_Log $oLog */
+        $oLog = oxNew( 'fpOCM_Log' );
+        $oLog->assign([
+            'oxcronjobid' => $oCronjob->getId(),
+            'oxstarttime' => microtime(true),
+            'oxstate' => 'running',
+        ]);
+
+        $oLog->save();
+
+        // Cronjob ausführen
+        try {
+            $sOutput = $this->{$oCronjob->getFnc()}();
+
+            $oLog->assign([
+               'oxstate' => 'finished',
+                'oxendtime' => microtime(true),
+            ]);
+            $oLog->save();
+
+            return $sOutput;
+        } catch( fpOCM_Exception $e ){
+            $oLog->assign([
+                'oxexception' => $e->getMessage(),
+                'oxstate' => 'aborted',
+                'oxendtime' => microtime(true),
+            ]);
+            $oLog->save();
+
+            return '';
+        } catch( Exception $e ){
+            $oLog->assign([
+                'oxstate' => 'aborted',
+                'oxendtime' => microtime(true),
+            ]);
+            $oLog->save();
+
+            throw $e;
+        }
+    }
+
+
+    /**
      * Test-Cronjob
      */
-    public function doMyJobj()
+    public function doMyJob()
     {
         sleep(5);
+
+        $oEx = oxNew( 'fpOCM_Exception');
+        $oEx->setMessage( 'FEhler bei der Ausführung' );
+        throw $oEx;
+
         return "Some Job";
     }
 }

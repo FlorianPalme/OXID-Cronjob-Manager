@@ -38,6 +38,22 @@ class fpOCM_Cronjob extends oxBase
 
 
     /**
+     * Last saved log
+     *
+     * @var null|fpOCM_Log|false
+     */
+    protected $_oLastLog = null;
+
+
+    /**
+     * Cronjob log statistics
+     *
+     * @var null|stdClass
+     */
+    protected $_oStatistics = null;
+
+
+    /**
      * Class constructor, initiates parent constructor.
      */
     public function __construct()
@@ -161,5 +177,60 @@ class fpOCM_Cronjob extends oxBase
         }
 
         return $this->_oModule;
+    }
+
+
+    /**
+     * Gibt den letzten gespeicherten Log zurück
+     *
+     * @return bool|fpOCM_Log|null
+     */
+    public function getLastLog()
+    {
+        if( $this->_oLastLog === null ){
+            $this->_oLastLog = false;
+
+            /** @var fpOCM_Log $oLog */
+            $oLog = oxNew( 'fpOCM_Log' );
+
+            if( $oLog->loadLastLogForCronjob( $this->getId() ) ){
+                $this->_oLastLog = $oLog;
+            }
+        }
+
+        return $this->_oLastLog;
+    }
+
+
+    /**
+     * Gibt Statistiken für einen Cronjob zurück
+     *
+     * @return null|stdClass
+     */
+    public function getStatistics()
+    {
+        if( $this->_oStatistics === null ){
+            $oStatistics = new stdClass();
+
+            $oDb = oxDb::getDb();
+            $oLog = oxNew( 'fpOCM_Log' );
+            $sLogView = $oLog->getViewName();
+
+            $oStatistics->count = $oDb->getOne(
+                "SELECT COUNT(*) FROM $sLogView WHERE oxcronjobid = '{$this->getId()}'"
+            );
+
+            $oStatistics->aborted = $oDb->getOne(
+                "SELECT COUNT(*) FROM $sLogView WHERE oxcronjobid = '{$this->getId()}' AND oxstate = 'aborted'"
+            );
+
+            $oStatistics->averageDuration = $oDb->getOne(
+                "SELECT AVG(oxendtime - oxstarttime) FROM $sLogView WHERE oxcronjobid = '{$this->getId()}'"
+            );
+
+            $this->_oStatistics = $oStatistics;
+        }
+
+        return $this->_oStatistics;
     }
 }

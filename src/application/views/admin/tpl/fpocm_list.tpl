@@ -30,8 +30,9 @@ window.onload = function ()
                 [{block name="admin_fpocm_list_colgroup"}]
                     <col width="3%">
                     <col width="30%">
-                    <col width="46%">
-                    <col width="20%">
+                    <col width="41%">
+                    <col width="10%">
+                    <col width="15%">
                     <col width="1%">
                 [{/block}]
             </colgroup>
@@ -41,6 +42,7 @@ window.onload = function ()
                     <td class="listheader">[{ oxmultilang ident="FPOCM_ADMIN_LIST_MODULETITLE" }]</td>
                     <td class="listheader">[{ oxmultilang ident="FPOCM_ADMIN_LIST_TITLE" }]</td>
                     <td class="listheader">[{ oxmultilang ident="FPOCM_ADMIN_LIST_CRONTAB" }]</td>
+                    <td class="listheader">[{ oxmultilang ident="FPOCM_ADMIN_LIST_LASTEXECUTION" }]</td>
                     <td class="listheader">&nbsp;</td>
                 [{/block}]
             </tr>
@@ -66,7 +68,21 @@ window.onload = function ()
                         <td valign="top" class="[{$listclass}]"><div class="listitemfloating"><a href="Javascript:top.oxid.admin.editThis('[{$listitem->fpocmcronjobs__oxid->value}]');" class="[{$listclass}]">[{$listitem->getModuleTitle()}]</a></div></td>
                         <td valign="top" class="[{$listclass}]"><div class="listitemfloating"><a href="Javascript:top.oxid.admin.editThis('[{$listitem->fpocmcronjobs__oxid->value}]');" class="[{$listclass}]">[{$listitem->getTitle()}]</a></div></td>
                         <td valign="top" class="[{$listclass}]"><div class="listitemfloating"><a href="Javascript:top.oxid.admin.editThis('[{$listitem->fpocmcronjobs__oxid->value}]');" class="[{$listclass}]">[{$listitem->fpocmcronjobs__oxcrontab->value}]</a></div></td>
-                        <td>&nbsp;</td>
+                        <td valign="top" class="[{$listclass}]">
+                            <div class="listitemfloating"><a href="Javascript:top.oxid.admin.editThis('[{$listitem->fpocmcronjobs__oxid->value}]');" class="[{$listclass}]">
+                                    [{assign var="oLastLog" value=$listitem->getLastLog()}]
+                                    [{if !$oLastLog}]
+                                        [{oxmultilang ident="FPOCM_ADMIN_LIST_NOLASTEXECUTION"}]
+                                    [{else}]
+                                        <span class="fpocmlogstate [{$oLastLog->fpocmlog__oxstate->value}]">
+                                            [{"FPOCM_ADMIN_LIST_STATE_"|cat:$oLastLog->fpocmlog__oxstate->value|upper|oxmultilangassign}]
+                                        </span>
+                                        [{$oLastLog->fpocmlog__oxstarttime->value|date_format:'%d.%m.%Y %H:%M:%S'}]
+                                    [{/if}]
+                                </a>
+                            </div>
+                        </td>
+                        <td class="[{$listclass}]">&nbsp;</td>
                     [{/block}]
                 </tr>
                 [{if $blWhite == "2"}]
@@ -75,7 +91,7 @@ window.onload = function ()
                     [{assign var="blWhite" value="2"}]
                 [{/if}]
             [{/foreach}]
-            [{include file="pagenavisnippet.tpl" colspan="5"}]
+            [{include file="pagenavisnippet.tpl" colspan="6"}]
         </table>
     </form>
 </div>

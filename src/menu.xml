@@ -4,6 +4,7 @@
         <MAINMENU id="mxservice">
             <SUBMENU id="mxfpocm" cl="fpocm_admin" list="fpocm_list">
                 <TAB id="tbclfpocm_main" cl="fpocm_main" />
+                <TAB id="tbclfpocm_adminlog" cl="fpocm_adminlog" />
             </SUBMENU>
         </MAINMENU>
     </OXMENU>

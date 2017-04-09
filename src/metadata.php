@@ -29,9 +29,13 @@ $aModule = [
         'fpocm_admin' => 'fp/oxid-cronjob-manager/application/controllers/admin/fpocm_admin.php',
         'fpocm_list' => 'fp/oxid-cronjob-manager/application/controllers/admin/fpocm_list.php',
         'fpocm_main' => 'fp/oxid-cronjob-manager/application/controllers/admin/fpocm_main.php',
+        'fpocm_adminlog' => 'fp/oxid-cronjob-manager/application/controllers/admin/fpocm_adminlog.php',
         'fpocm_events' => 'fp/oxid-cronjob-manager/events.php',
         'fpocm_cronjob' => 'fp/oxid-cronjob-manager/application/models/fpocm_cronjob.php',
         'fpocm_cronjoblist' => 'fp/oxid-cronjob-manager/application/models/fpocm_cronjoblist.php',
+        'fpocm_log' => 'fp/oxid-cronjob-manager/application/models/fpocm_log.php',
+        'fpocm_loglist' => 'fp/oxid-cronjob-manager/application/models/fpocm_loglist.php',
+        'fpocm_exception' => 'fp/oxid-cronjob-manager/core/exception/fpocm_exception.php',
     ],
 
     /** Extend Classes (fp/Module) **/
@@ -48,11 +52,11 @@ $aModule = [
             'file' => 'application/views/admin/tpl/headitem/incjs.tpl',
         ],*/
 
-        /*[
+        [
             'template' => 'headitem.tpl',
             'block' => 'admin_headitem_inccss',
             'file' => 'application/views/admin/tpl/headitem/inccss.tpl',
-        ],*/
+        ],
     ],
 
     /** Settings **/
@@ -65,6 +69,7 @@ $aModule = [
         'fpocm_admin.tpl' => 'fp/oxid-cronjob-manager/application/views/admin/tpl/fpocm_admin.tpl',
         'fpocm_list.tpl' => 'fp/oxid-cronjob-manager/application/views/admin/tpl/fpocm_list.tpl',
         'fpocm_main.tpl' => 'fp/oxid-cronjob-manager/application/views/admin/tpl/fpocm_main.tpl',
+        'fpocm_adminlog.tpl' => 'fp/oxid-cronjob-manager/application/views/admin/tpl/fpocm_adminlog.tpl',
     ],
 
     /** Events **/

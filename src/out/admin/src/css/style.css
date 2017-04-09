@@ -1,0 +1,16 @@
+.fpocmlogstate {
+    font-weight:bold;
+    margin-right:10px;
+}
+
+.fpocmlogstate.finished {
+    color: #1c8020;
+}
+
+.fpocmlogstate.running {
+    color: #ab6400;
+}
+
+.fpocmlogstate.aborted {
+    color: #ab000d;
+}
