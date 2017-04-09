@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="ISO-8859-15"?>
+<OX>
+    <OXMENU id="NAVIGATION_ESHOPADMIN">
+        <MAINMENU id="mxservice">
+            <SUBMENU id="mxfpocm" cl="fpocm_admin" list="fpocm_list">
+                <TAB id="tbclfpocm_main" cl="fpocm_main" />
+            </SUBMENU>
+        </MAINMENU>
+    </OXMENU>
+</OX>
