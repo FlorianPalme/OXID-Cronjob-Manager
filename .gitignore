@@ -1,5 +1,6 @@
 # Custom Gitignore-Rules
 src/vendor/
+node_modules/
 
 # Created by https://www.gitignore.io/api/phpstorm,osx,windows,grunt
 
