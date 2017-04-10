@@ -233,4 +233,37 @@ class fpOCM_Cronjob extends oxBase
 
         return $this->_oStatistics;
     }
+
+
+    /**
+     * Delete this object from the database, returns true on success.
+     *
+     * @param string $sOxId Object ID(default null)
+     *
+     * @return bool
+     */
+    public function delete($sOxId = null)
+    {
+        $blDeleted = parent::delete($sOxId);
+
+        if (!$sOxId) {
+            $sOxId = $this->getId();
+
+            //do not allow derived deletion
+            if (!$this->allowDerivedDelete()) {
+                return $blDeleted;
+            }
+        }
+
+        if (!$sOxId) {
+            return $blDeleted;
+        }
+
+
+        // Log leeren
+        $oDb = oxDb::getDb();
+        $oDb->execute("DELETE FROM fpocmlog WHERE oxcronjobid = '$sOxId'");
+
+        return $blDeleted;
+    }
 }

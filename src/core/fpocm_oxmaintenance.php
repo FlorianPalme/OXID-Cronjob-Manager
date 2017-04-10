@@ -46,7 +46,12 @@ class fpOCM_oxMaintenance extends fpOCM_oxMaintenance_parent
         // Alle Jobs durchlaufen und Ausführung starten
         /** @var fpOCM_Cronjob $oCronjob */
         foreach( $oCronjobList as $oCronjob ){
-            if( ! $oCronjob->getModule() ) continue;
+            if( ! $oCronjob->getModule() ) {
+                // Modul nicht mehr Verfügbar... also löschen wir den Cronjob
+                $oCronjob->delete();
+
+                continue;
+            };
 
             $oScheduler->call( [ $this, 'runOCMCronjob' ], [ 'oCronjob' => $oCronjob ] )
                 ->at( $oCronjob->fpocmcronjobs__oxcrontab->value )
@@ -58,7 +63,11 @@ class fpOCM_oxMaintenance extends fpOCM_oxMaintenance_parent
                             return true;
                         }
 
-                        // TODO: Cronjob deaktivieren
+                        // Cronjob deaktivieren
+                        $oCronjob->assign([
+                            'oxstatus' => 'aborted',
+                        ]);
+                        $oCronjob->save();
                     }
 
                     return false;
@@ -128,20 +137,5 @@ class fpOCM_oxMaintenance extends fpOCM_oxMaintenance_parent
 
             throw $e;
         }
-    }
-
-
-    /**
-     * Test-Cronjob
-     */
-    public function doMyJob()
-    {
-        sleep(5);
-
-        $oEx = oxNew( 'fpOCM_Exception');
-        $oEx->setMessage( 'FEhler bei der Ausführung' );
-        throw $oEx;
-
-        return "Some Job";
     }
 }

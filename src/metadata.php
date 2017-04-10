@@ -79,7 +79,7 @@ $aModule = [
 
 
     /** Cronjobs */
-    'cronjobs' => [
+   /* 'cronjobs' => [
         'fpocm_excronjob1' => [
             'fnc' => 'doMyJob',
             'title' => [
@@ -87,5 +87,5 @@ $aModule = [
             ],
             'crontab' => '* * * * *',
         ],
-    ],
+    ],*/
 ];
