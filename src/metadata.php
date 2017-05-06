@@ -18,7 +18,7 @@ $aModule = [
     'id'			=>	'fpOxidCronjobManager',
     'title'			=>	'<span style="color:#d35400;font-weight:bold;">{</span>FP<span style="color:#d35400;font-weight:bold;">}</span> OXID Cronjob Manager',
     'description'	=>	'',
-    'thumbnail'		=>	'picture.png',
+    'thumbnail'		=>	'../picture.png',
     'version'		=>	'0.1',
     'author'		=>	'Florian Palme',
     'url'			=>	'http://www.florian-palme.de/',
@@ -76,16 +76,4 @@ $aModule = [
     'events'        =>  [
         'onActivate' => 'fpOCM_Events::onActivate',
     ],
-
-
-    /** Cronjobs */
-   /* 'cronjobs' => [
-        'fpocm_excronjob1' => [
-            'fnc' => 'doMyJob',
-            'title' => [
-                'de' => 'Test-Titel',
-            ],
-            'crontab' => '* * * * *',
-        ],
-    ],*/
 ];

@@ -53,7 +53,7 @@ SQL;
                 $blResult = $oDb->execute($sSql);
             } catch (oxAdoDbException $e) {
                 // Ausser es sind keine "alread exists" fehler...
-                if (!preg_match('/(aready exists|Duplicate column name)/i', $e->getMessage())) {
+                if (!preg_match('/(already exists|Duplicate column name)/i', $e->getMessage())) {
                     throw $e;
                 }
             }
