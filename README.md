@@ -2,9 +2,9 @@
 Fügt dem OXID-Backend einen Cronjob-Manager ein. 
 
 ## Installation
-1. Downloade das Repository
-2. Kopiere den Inhalt des copy_this/-Ordners in das Root-Verzeichnis deines Shops
-3. Aktiviere das Modul im Backend des Shops
+```bash
+composer require florianpalme/oxid-cronjobmanager
+```
 
 ## Cronjob einrichten
 Bevor Cronjobs mittels des OXID Cronjob Managers verwendet werden können, muss ein normaler Crontab eingerichtet werden. Dabei ist darauf zu achten, dass der Aufruf jeder Minute durchgeführt wird.
