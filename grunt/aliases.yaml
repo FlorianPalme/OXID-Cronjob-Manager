@@ -1,8 +1,0 @@
-build:
-  - "clean:build"
-  - "mkdir:build"
-  - "file-creator:build"
-  - "copy:build"
-
-default:
-  - "build"

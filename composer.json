@@ -1,0 +1,34 @@
+{
+    "name": "florianpalme/oxid-cronjobmanager",
+    "description": "Fügt dem OXID-Backend einen Cronjob-Manager ein.",
+    "type": "oxideshop-module",
+    "keywords": ["oxid", "modules", "eShop", "florianpalme", "cronjob", "manager"],
+    "homepage": "https://www.florian-palme.de",
+    "license": "GPL-3.0-only",
+    "authors": [
+        {
+            "name": "Florian Palme",
+            "email": "info@florian-palme.de",
+            "homepage": "https://www.florian-palme.de/",
+            "role": "Developer"
+        }
+    ],
+
+    "autoload": {
+        "psr-4": {
+            "FlorianPalme\\OXIDCronjobManager\\": "../../../source/modules/fp/cronjobmanager"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+
+    "extra": {
+        "oxideshop": {
+            "target-directory": "fp/cronjobmanager"
+        }
+    },
+    "require": {
+        "php": ">=7.0.0",
+        "peppeocchi/php-cron-scheduler": "2.*"
+    }
+}

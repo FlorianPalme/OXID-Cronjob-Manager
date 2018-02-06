@@ -54,8 +54,12 @@ In der ausgegebenen Liste werden Status, Start- & Endzeit, Ausführungszeit und 
 ## Verwendung in Modulen
 Als Modul-Entwickler ersparst du dir durch den Cronjob Manager das schreiben eigener Cronjob-Funktionen, wie Prüfungen, ob er nun ausgeführt werden darf oder nicht. 
 
-### Überladen der oxmaintenance.php
-Füge deinen Cronjob als Methode in der oxMaintenance-Klasse hinzu. Die Methode muss als `public function` definiert werden.
+### Überladen der Maintenance
+Füge deinen Cronjob als Methode in der \OxidEsales\Eshop\Application\Model\Maintenance-Klasse hinzu.
+
+### Fehler-Meldungen
+Schlägt dein Cronjob aus irgendwelchen Gründen fehl, so kannst du eine Instanz von FlorianPalme\OXIDCronjobManager\Core\Exception\Exception werfen.
+Diese wird abgefangen und die hinterlegte Message in den Log geschrieben.
 
 ### Anpassung metadata.php
 Das `$aModule`-Array in der metadata.php wird um ein Array `cronjobs` wie folgt erweitert.
@@ -85,3 +89,15 @@ Titel des Cronjobs als String oder Array für mehrere Sprachen.
 
 #### crontab
 Empfohlene Crontab-Einstellung für diesen Cronjob.
+
+
+
+# Changelog
+All notable changes to this project will be documented in this file.
+
+The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
+and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
+
+## [2.0.0] - 2018-02-05
+### Changed
+- Upgrade auf OXID 6
