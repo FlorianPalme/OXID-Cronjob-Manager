@@ -16,7 +16,7 @@ Kann der Linux Crontab auf dem Server bearbeitet werden (`crontab -e`), kann fol
  ```
  
 ### Hoster
-Ist es dir nicht möglich, den Crontab über die Linux-Konsole einzurichten, wende dich an deinen Hoster, welche dir weiterhelfen kann. Dabei muss die Datei `bin/cron.php` im OXID-Root-Verzeichnis mittels php ausgeführt werden.
+Ist es dir nicht möglich, den Crontab über die Linux-Konsole einzurichten, wende dich an deinen Hoster, welcher dir weiterhelfen kann. Dabei muss die Datei `bin/cron.php` im OXID-Root-Verzeichnis mittels php ausgeführt werden.
 
 ## Verwendung
 Unter Service -> Cronjob Manager findest du alle von Modulen bereitgestellten Cronjobs.
