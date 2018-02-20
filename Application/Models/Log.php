@@ -7,8 +7,20 @@
 namespace FlorianPalme\OXIDCronjobManager\Application\Models;
 
 
+use OxidEsales\Eshop\Core\Field;
 use OxidEsales\Eshop\Core\Model\BaseModel;
 
+/**
+ * Class Log
+ *
+ * @property Field fpocmlog__oxid char(32)
+ * @property Field fpocmlog__oxcronjobid char(32)
+ * @property Field fpocmlog__oxstarttime decimal(16,6)
+ * @property Field fpocmlog__oxendtime decimal(16,6)
+ * @property Field fpocmlog__oxstate enum('running', 'finished', 'aborted')
+ * @property Field fpocmlog__oxexception text
+ * @property Field fpocmlog__oxtimestamp timestamp
+ */
 class Log extends BaseModel
 {
     /**

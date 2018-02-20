@@ -74,4 +74,9 @@ $aModule = [
         'onActivate' => 'FlorianPalme\OXIDCronjobManager\Core\Events::onActivate',
         'onDeactivate' => 'FlorianPalme\OXIDCronjobManager\Core\Events::onDeactivate',
     ],
+
+    /** Debugbar Erweiterungen */
+    'debugbar' => [
+        'fpcronjobmanager_cronjobs' => 'FlorianPalme\OXIDCronjobManager\Core\DebugBar\Elements\Cronjobs',
+    ],
 ];

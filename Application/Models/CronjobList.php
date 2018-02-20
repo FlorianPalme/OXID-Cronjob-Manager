@@ -17,4 +17,22 @@ class CronjobList extends ListModel
     {
         parent::__construct(Cronjob::class);
     }
+
+
+    /**
+     * Lädt aktive Cronjobs in die Liste
+     *
+     * @return $this
+     */
+    public function loadActiveCronjobs()
+    {
+        $listObject = $this->getBaseObject();
+        $fieldList = $listObject->getSelectFields();
+
+        $query = "select $fieldList from " . $listObject->getViewName();
+        $query .= " where oxstatus = 'active'";
+        $this->selectString($query);
+
+        return $this;
+    }
 }
