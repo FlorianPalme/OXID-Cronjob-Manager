@@ -98,6 +98,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [2.1.0] - 2018-02-20
+### Added
+- Integration in die [DebugBar]
+
+### Fixed
+- Liste im Admin wurde nicht mehr dargestellt, ist das Modul zu einem Cronjob nicht mehr vorhanden
+
 ## [2.0.0] - 2018-02-05
 ### Changed
 - Upgrade auf OXID 6
+
+
+[2.1.0]: https://github.com/FlorianPalme/OXID-Cronjob-Manager/releases/tag/2.1.0
+[2.0.0]: https://github.com/FlorianPalme/OXID-Cronjob-Manager/releases/tag/2.0.0
+[DebugBar]: https://github.com/FlorianPalme/OXID-DebugBar
