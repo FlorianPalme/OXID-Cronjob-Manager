@@ -9,9 +9,20 @@ namespace FlorianPalme\OXIDCronjobManager\Application\Models;
 
 use FlorianPalme\OXIDCronjobManager\Core\Module\Module;
 use OxidEsales\Eshop\Core\DatabaseProvider;
+use OxidEsales\Eshop\Core\Field;
 use OxidEsales\Eshop\Core\Model\BaseModel;
 use OxidEsales\Eshop\Core\Registry;
 
+/**
+ * Class Cronjob
+ *
+ * @property Field fpocmcronjobs__oxid char(32)
+ * @property Field fpocmcronjobs__oxstatus enum('active','paused','aborted')
+ * @property Field fpocmcronjobs__oxcronjobid varchar(255)
+ * @property Field fpocmcronjobs__oxcrontab varchar(128)
+ * @property Field fpocmcronjobs__oxtimestamp timestamp
+ * @property Field fpocmcronjobs__oxmoduleid varchar(255)
+ */
 class Cronjob extends BaseModel
 {
     /**
@@ -139,7 +150,11 @@ class Cronjob extends BaseModel
      */
     public function getModuleTitle()
     {
-        return $this->getModule()->getTitle();
+        if ($this->getModule()) {
+            return $this->getModule()->getTitle();
+        }
+
+        return Registry::getLang()->translateString('FPOCM_ADMIN_LIST_MODULE_NOTAVAILABLE');
     }
 
     /**
