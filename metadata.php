@@ -63,10 +63,10 @@ $aModule = [
 
     /** Templates (fp/Module) **/
     'templates'		=>	[
-        'fpocm_admin.tpl' => 'fp/cronjobmanager/application/views/admin/tpl/admin.tpl',
-        'fpocm_list.tpl' => 'fp/cronjobmanager/application/views/admin/tpl/list.tpl',
-        'fpocm_main.tpl' => 'fp/cronjobmanager/application/views/admin/tpl/main.tpl',
-        'fpocm_adminlog.tpl' => 'fp/cronjobmanager/application/views/admin/tpl/adminlog.tpl',
+        'fpocm_admin.tpl' => 'fp/cronjobmanager/Application/views/admin/tpl/admin.tpl',
+        'fpocm_list.tpl' => 'fp/cronjobmanager/Application/views/admin/tpl/list.tpl',
+        'fpocm_main.tpl' => 'fp/cronjobmanager/Application/views/admin/tpl/main.tpl',
+        'fpocm_adminlog.tpl' => 'fp/cronjobmanager/Application/views/admin/tpl/adminlog.tpl',
     ],
 
     /** Events **/
